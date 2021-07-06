@@ -60,7 +60,7 @@ namespace SacramentMeetingPlanner.Controllers
             {
                 _context.Add(speaker);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("/SacramentMeetings/create");
             }
             return View(speaker);
         }
