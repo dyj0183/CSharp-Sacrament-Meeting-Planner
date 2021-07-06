@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<SacramentMeetingPlanner.Models.SacramentMeeting>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Sacrament Meeting Index";
 }
 
-<h1>Index</h1>
+<h1>Sacrament Meeting Schedule</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success">Create New</a>
 </p>
-<table class="table">
+<table class="table table-dark table-striped table-hover table-responsive">
     <thead>
         <tr>
             <th>
@@ -22,19 +22,19 @@
                 @Html.DisplayNameFor(model => model.OpenHymn)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CloseHymn)
+                @Html.DisplayNameFor(model => model.OpenPrayer)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.SacramentHymn)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OpenPrayer)
+                @Html.DisplayNameFor(model => model.MusicalNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CloseHymn)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ClosePrayer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MusicalNumber)
             </th>
             <th></th>
         </tr>
@@ -52,24 +52,24 @@
                 @Html.DisplayFor(modelItem => item.OpenHymn)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CloseHymn)
+                @Html.DisplayFor(modelItem => item.OpenPrayer)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SacramentHymn)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OpenPrayer)
+                @Html.DisplayFor(modelItem => item.MusicalNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CloseHymn)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ClosePrayer)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MusicalNumber)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.SacramentMeetingId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.SacramentMeetingId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.SacramentMeetingId">Delete</a>
+            <td class="btn-toolbar">
+                <a asp-action="Edit" asp-route-id="@item.SacramentMeetingId" class="btn btn-primary btn-sm m-1">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SacramentMeetingId" class="btn btn-primary btn-sm m-1">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SacramentMeetingId" class="btn btn-primary btn-sm m-1">Delete</a>
             </td>
         </tr>
 }
