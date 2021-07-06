@@ -9,7 +9,6 @@ namespace SacramentMeetingPlanner.Models
     public class SacramentMeeting
     {
         // properties
-       
         public int SacramentMeetingId { get; set; } // primary key
 
         [Display(Name = "Date")]
@@ -41,6 +40,9 @@ namespace SacramentMeetingPlanner.Models
         public string ClosePrayer { get; set; }
 
         [Display(Name = "Musical Number")]
-        public string MusicalNumber { get; set; } // optional
+        public string MusicalNumber { get; set; } // it is optional
+
+        // navigation properties
+        public ICollection<Speaker> Speakers { get; set; } // each sacrament could link to zero or many speakers
     }
 }
