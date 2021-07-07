@@ -21,5 +21,6 @@ namespace SacramentMeetingPlanner.Models
         public string SpeakerSubject { get; set; }
 
         // navigation properties
+        public SacramentMeeting SacramentMeeting { get; set; }
     }
 }

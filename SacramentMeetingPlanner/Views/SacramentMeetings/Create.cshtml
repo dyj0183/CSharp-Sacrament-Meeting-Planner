@@ -53,6 +53,14 @@
                 <input asp-for="ClosePrayer" class="form-control" />
                 <span asp-validation-for="ClosePrayer" class="text-danger"></span>
             </div>
+
+            @*loop through all the added speakers for this sacrament meeting*@
+            @*@foreach (var speaker in Model.Speakers)
+            {
+                <p>Speaker Name</p>
+                <p>@Html.DisplayFor(speakers => speaker.SpeakerName)</p>
+            }*@
+
             <a asp-controller="Speakers" class="btn btn-info mt-1 mb-3">Add Speaker</a>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-success" />

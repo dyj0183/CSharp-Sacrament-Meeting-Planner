@@ -58,9 +58,12 @@ namespace SacramentMeetingPlanner.Controllers
         {
             if (ModelState.IsValid)
             {
+                // grab PK from sacrament meeting and assign it to Speaker as a FK
+                //speaker.SacramentMeetingId = speaker.SacramentMeeting.SacramentMeetingId;
+
                 _context.Add(speaker);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("/SacramentMeetings/create");
+                return RedirectToAction("Create", "SacramentMeetings"); // I want to redirect the user back to Sacrament Creating page after they created a new speaker, is this the right way to do it?
             }
             return View(speaker);
         }
