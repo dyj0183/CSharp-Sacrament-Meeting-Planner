@@ -12,13 +12,7 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <!--<div class="form-group">
-                <label asp-for="SacramentMeetingId" class="control-label"></label>
-                <select asp-for="SacramentMeetingId" class="form-control">
-                    <option value="1">1</option>
-                </select>-->
-                @*<select asp-for="SacramentMeetingId" class="form-control" asp-items="ViewBag.SacramentMeetingId"></select>*@
-            <!--</div>-->
+            @*submit the sacrament meeting id as the foreign key to help speaker connect to the right sacrament meeting*@
             <input type="hidden" asp-for="SacramentMeetingId" value="@ViewData["SacramentId"]"/>
             <div class="form-group">
                 <label asp-for="SpeakerName" class="control-label"></label>

@@ -16,7 +16,7 @@ namespace SacramentMeetingPlanner.Controllers
         private readonly SacramentMeetingPlannerContext _context;
 
         // set up this here so we could use it in when we create new speaker
-        private int _sacramentMeetingId;
+        // private int _sacramentMeetingId;
 
         public SpeakersController(SacramentMeetingPlannerContext context)
         {
@@ -25,14 +25,13 @@ namespace SacramentMeetingPlanner.Controllers
 
         // GET: Speakers
         public async Task<IActionResult> Index(int id)
-        {
-            _sacramentMeetingId = id;
-
-            // we need this for the index view, so we can pass to the create view
+        { 
+            // we need this for the index view, so we can pass it to the create view
             ViewData["SacramentId"] = id;
 
-            // sacramentMeetingId = int.Parse(Request.QueryString["id"]); // I don't understand why request.querystring wouldn't work
-            return View(await _context.Speaker.Where(s => s.SacramentMeetingId == id).ToListAsync());
+            var matchedSpeakers = await _context.Speaker.Where(s => s.SacramentMeetingId == id).ToListAsync();
+
+            return View(matchedSpeakers);
         }
 
         // GET: Speakers/Details/5
@@ -69,12 +68,9 @@ namespace SacramentMeetingPlanner.Controllers
         {
             if (ModelState.IsValid)
             {
-                // assign the sacrament meeting Id we grab from the url and save it here
-                //speaker.SacramentMeetingId = 1;
-
                 _context.Add(speaker);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Speakers", new { id = speaker.SacramentMeetingId });
             }
             return View(speaker);
         }
