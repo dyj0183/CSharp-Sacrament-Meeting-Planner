@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,9 @@ namespace SacramentMeetingPlanner.Controllers
     {
         private readonly SacramentMeetingPlannerContext _context;
 
+        // set up this here so we could use it in when we create new speaker
+        private int sacramentMeetingId;
+
         public SpeakersController(SacramentMeetingPlannerContext context)
         {
             _context = context;
@@ -22,6 +26,7 @@ namespace SacramentMeetingPlanner.Controllers
         // GET: Speakers
         public async Task<IActionResult> Index()
         {
+            // sacramentMeetingId = int.Parse(Request.QueryString["id"]); // I don't understand why request.querystring wouldn't work
             return View(await _context.Speaker.ToListAsync());
         }
 
@@ -58,12 +63,12 @@ namespace SacramentMeetingPlanner.Controllers
         {
             if (ModelState.IsValid)
             {
-                // grab PK from sacrament meeting and assign it to Speaker as a FK
-                //speaker.SacramentMeetingId = speaker.SacramentMeeting.SacramentMeetingId;
+                // assign the sacrament meeting Id we grab from the url and save it here
+                speaker.SacramentMeetingId = 1;
 
                 _context.Add(speaker);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Create", "SacramentMeetings"); // I want to redirect the user back to Sacrament Creating page after they created a new speaker, is this the right way to do it?
+                return RedirectToAction(nameof(Index));
             }
             return View(speaker);
         }

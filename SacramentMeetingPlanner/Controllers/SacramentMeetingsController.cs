@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -60,7 +61,12 @@ namespace SacramentMeetingPlanner.Controllers
             {
                 _context.Add(sacramentMeeting);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                // (action, controller, newSacramentMeetingId)
+                // https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.redirecttoaction?view=aspnetcore-5.0#Microsoft_AspNetCore_Mvc_ControllerBase_RedirectToAction_System_String_System_String_System_String_
+                Debug.WriteLine("This is the meeting id"); // why it is not showing in any place?
+                Debug.WriteLine(sacramentMeeting.SacramentMeetingId);
+                return RedirectToAction("Index", "Speakers", new { id = sacramentMeeting.SacramentMeetingId }); 
             }
             return View(sacramentMeeting);
         }
