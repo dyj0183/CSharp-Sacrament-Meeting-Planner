@@ -27,6 +27,10 @@ namespace SacramentMeetingPlanner.Controllers
         public async Task<IActionResult> Index(int id)
         {
             _sacramentMeetingId = id;
+
+            // we need this for the index view, so we can pass to the create view
+            ViewData["SacramentId"] = id;
+
             // sacramentMeetingId = int.Parse(Request.QueryString["id"]); // I don't understand why request.querystring wouldn't work
             return View(await _context.Speaker.Where(s => s.SacramentMeetingId == id).ToListAsync());
         }

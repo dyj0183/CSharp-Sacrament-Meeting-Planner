@@ -7,7 +7,7 @@
 <h1>Add Speaker(s) for this Sacrament Meeting</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-success">Create New</a>
+    <a asp-action="Create" asp-route-id=@ViewData["SacramentId"] class="btn btn-success">Create New</a>
 </p>
 <table class="table">
     <thead>
