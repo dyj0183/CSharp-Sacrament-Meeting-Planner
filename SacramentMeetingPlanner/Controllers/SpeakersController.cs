@@ -16,7 +16,7 @@ namespace SacramentMeetingPlanner.Controllers
         private readonly SacramentMeetingPlannerContext _context;
 
         // set up this here so we could use it in when we create new speaker
-        private int sacramentMeetingId;
+        private int _sacramentMeetingId;
 
         public SpeakersController(SacramentMeetingPlannerContext context)
         {
@@ -24,10 +24,11 @@ namespace SacramentMeetingPlanner.Controllers
         }
 
         // GET: Speakers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int id)
         {
+            _sacramentMeetingId = id;
             // sacramentMeetingId = int.Parse(Request.QueryString["id"]); // I don't understand why request.querystring wouldn't work
-            return View(await _context.Speaker.ToListAsync());
+            return View(await _context.Speaker.Where(s => s.SacramentMeetingId == id).ToListAsync());
         }
 
         // GET: Speakers/Details/5
