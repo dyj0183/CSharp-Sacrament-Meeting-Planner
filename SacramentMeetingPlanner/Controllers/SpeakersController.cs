@@ -54,8 +54,9 @@ namespace SacramentMeetingPlanner.Controllers
         }
 
         // GET: Speakers/Create
-        public IActionResult Create()
+        public IActionResult Create(int SacramentId)
         {
+            ViewData["SacramentId"] = SacramentId;
             return View();
         }
 
@@ -69,7 +70,7 @@ namespace SacramentMeetingPlanner.Controllers
             if (ModelState.IsValid)
             {
                 // assign the sacrament meeting Id we grab from the url and save it here
-                speaker.SacramentMeetingId = 1;
+                //speaker.SacramentMeetingId = 1;
 
                 _context.Add(speaker);
                 await _context.SaveChangesAsync();

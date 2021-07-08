@@ -19,7 +19,7 @@
                 </select>-->
                 @*<select asp-for="SacramentMeetingId" class="form-control" asp-items="ViewBag.SacramentMeetingId"></select>*@
             <!--</div>-->
-            @*<input type="hidden" name="SacramentMeetingId" value=""/>*@
+            <input type="hidden" asp-for="SacramentMeetingId" value="@ViewData["SacramentId"]"/>
             <div class="form-group">
                 <label asp-for="SpeakerName" class="control-label"></label>
                 <input asp-for="SpeakerName" class="form-control" />
