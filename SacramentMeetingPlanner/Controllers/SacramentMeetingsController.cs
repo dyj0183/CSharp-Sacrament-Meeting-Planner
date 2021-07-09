@@ -23,11 +23,12 @@ namespace SacramentMeetingPlanner.Controllers
         // GET: SacramentMeetings
         public async Task<IActionResult> Index()
         {
-            // include speaker info
-            //var sacramentMeeting = _context.SacramentMeeting
-            //    .Include(s => s.)
+            // include speaker(s) info so that we can display in the index view
+            var sacramentMeetingData = await _context.SacramentMeeting
+               .Include(s => s.Speakers)
+               .ToListAsync();
 
-            return View(await _context.SacramentMeeting.ToListAsync());
+            return View(sacramentMeetingData);
         }
 
         // GET: SacramentMeetings/Details/5

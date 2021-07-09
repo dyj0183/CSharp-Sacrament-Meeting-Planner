@@ -64,10 +64,17 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.MusicalNumber)
                 </td>
-                @*will need to loop through all the speakers that links to the specific sacrament meeting*@
+
+                @*loop through all the speaker(s) in the specific sacrament meeting*@
                 <td>
-                    @Html.DisplayFor(modelItem => item.Speakers)
+                    @foreach (var speaker in item.Speakers)
+                    {
+                        <p>
+                            @Html.DisplayFor(modelItem => speaker.SpeakerName)
+                        </p>
+                    }
                 </td>
+
                 <td>
                     @Html.DisplayFor(modelItem => item.CloseHymn)
                 </td>

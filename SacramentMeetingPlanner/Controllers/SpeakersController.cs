@@ -15,9 +15,6 @@ namespace SacramentMeetingPlanner.Controllers
     {
         private readonly SacramentMeetingPlannerContext _context;
 
-        // set up this here so we could use it in when we create new speaker
-        // private int _sacramentMeetingId;
-
         public SpeakersController(SacramentMeetingPlannerContext context)
         {
             _context = context;
@@ -70,6 +67,7 @@ namespace SacramentMeetingPlanner.Controllers
             {
                 _context.Add(speaker);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction("Index", "Speakers", new { id = speaker.SacramentMeetingId });
             }
             return View(speaker);
