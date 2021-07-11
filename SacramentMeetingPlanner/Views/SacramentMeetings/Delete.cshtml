@@ -57,6 +57,24 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ClosePrayer)
         </dd>
+        @if (Model.Speakers != null)
+        {
+            @foreach (var item in Model.Speakers)
+            {
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => item.SpeakerName)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => item.SpeakerName)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => item.SpeakerSubject)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => item.SpeakerSubject)
+                </dd>
+            }
+        }
     </dl>
     
     <form asp-action="Delete">

@@ -40,6 +40,7 @@ namespace SacramentMeetingPlanner.Controllers
             }
 
             var sacramentMeeting = await _context.SacramentMeeting
+                .Include(s => s.Speakers)
                 .FirstOrDefaultAsync(m => m.SacramentMeetingId == id);
             if (sacramentMeeting == null)
             {
@@ -122,7 +123,8 @@ namespace SacramentMeetingPlanner.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Speakers", new { id = sacramentMeeting.SacramentMeetingId });
+                //return RedirectToAction(nameof(Index));
             }
             return View(sacramentMeeting);
         }
@@ -136,6 +138,7 @@ namespace SacramentMeetingPlanner.Controllers
             }
 
             var sacramentMeeting = await _context.SacramentMeeting
+                .Include(s => s.Speakers)
                 .FirstOrDefaultAsync(m => m.SacramentMeetingId == id);
             if (sacramentMeeting == null)
             {
@@ -152,6 +155,14 @@ namespace SacramentMeetingPlanner.Controllers
         {
             var sacramentMeeting = await _context.SacramentMeeting.FindAsync(id);
             _context.SacramentMeeting.Remove(sacramentMeeting);
+
+            var speakers = await _context.Speaker.Where(s => s.SacramentMeetingId == id).ToListAsync();
+            foreach (var item in speakers)
+            {
+                var foundSpeaker = await _context.Speaker.FindAsync(item.SpeakerId);
+                _context.Speaker.Remove(foundSpeaker);
+            }
+           
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
