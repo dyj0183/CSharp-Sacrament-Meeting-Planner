@@ -124,7 +124,6 @@ namespace SacramentMeetingPlanner.Controllers
                     }
                 }
                 return RedirectToAction("Index", "Speakers", new { id = sacramentMeeting.SacramentMeetingId });
-                //return RedirectToAction(nameof(Index));
             }
             return View(sacramentMeeting);
         }

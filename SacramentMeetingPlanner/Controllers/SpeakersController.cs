@@ -119,8 +119,9 @@ namespace SacramentMeetingPlanner.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Speakers", new { id = speaker.SacramentMeetingId });
             }
+
             return View(speaker);
         }
 
@@ -150,7 +151,7 @@ namespace SacramentMeetingPlanner.Controllers
             var speaker = await _context.Speaker.FindAsync(id);
             _context.Speaker.Remove(speaker);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Speakers", new { id = speaker.SacramentMeetingId });
         }
 
         private bool SpeakerExists(int id)
