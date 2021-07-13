@@ -83,6 +83,7 @@
                 </td>
                 <td class="btn-toolbar">
                     <a asp-action="Edit" asp-route-id="@item.SacramentMeetingId" class="btn btn-primary btn-sm m-1">Edit</a> |
+                    <a asp-controller="Speakers" asp-action="Index" asp-route-id="@item.SacramentMeetingId" class="btn btn-primary btn-sm m-1">Speaker</a> |
                     <a asp-action="Details" asp-route-id="@item.SacramentMeetingId" class="btn btn-primary btn-sm m-1">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.SacramentMeetingId" class="btn btn-primary btn-sm m-1">Delete</a>
                 </td>

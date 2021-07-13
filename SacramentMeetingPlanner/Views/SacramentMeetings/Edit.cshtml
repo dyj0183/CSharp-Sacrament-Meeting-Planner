@@ -54,13 +54,14 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-success" />
-                <p class="text-info">Speaker(s) can be added, edited or deleted after saving edits here.</p>
+                <p class="text-info">Speaker(s) can be added, edited or deleted after saving edits here or click "Speaker" button to edit speakers.</p>
             </div>
         </form>
     </div>
 </div>
 
 <div>
+    <a asp-controller="Speakers" asp-action="Index" asp-route-id="@Model.SacramentMeetingId" class="btn btn-primary">Speaker</a>
     <a asp-action="Index" class="btn btn-primary">Back to List</a>
 </div>
 
