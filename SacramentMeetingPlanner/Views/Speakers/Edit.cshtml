@@ -30,10 +30,8 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index" class="btn btn-primary">Back to List</a>
-</div>
+<a asp-action="Index" asp-route-id="@Model.SacramentMeetingId" class="btn btn-primary">Back to List</a>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
